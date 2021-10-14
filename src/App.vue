@@ -1,28 +1,27 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-  </div>
+  <v-app>
+    <Header />
+
+    <v-main>
+      <SubHeader />
+    </v-main>
+  </v-app>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import SubHeader from "@/components/SubHeader";
+import Header from "@/components/Header";
+//import API from "@/API";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    SubHeader,
+    Header,
   },
+  // async mounted() {
+  //   const teste = await API.listAnimal();
+  //   console.log("TESTE", teste);
+  // }, //TO DO REMOVER ESSE TESTE DE REQUISIÇÃO
 };
 </script>
-
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
-}
-</style>
