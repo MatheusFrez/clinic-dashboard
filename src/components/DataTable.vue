@@ -60,6 +60,7 @@ export default {
       },
     },
     async expanded(value) {
+      this.loading = true;
       try {
         const itemExpanded = value[0];
         const idAnimal = (itemExpanded || {}).id;
@@ -70,6 +71,7 @@ export default {
       } catch (e) {
         console.log("DEU RUIMM AQUI EM", e); //TO DO CRIAR COMPONENTE GLOBAL PARA TRATAMENTO DE ERROS
       }
+      this.loading = false;
     },
   },
   mounted() {

@@ -1,35 +1,34 @@
 <template>
   <div>
-    <div v-if="detailsExpandedItem.length" class="pt-4">
-      <h3 class="title-expanded-item">Dados de consulta</h3>
-      <table class="font-titillium custom-mini-table">
-        <thead class="table-header custom-table-line">
-          <tr>
-            <th class="text-left">Data</th>
-            <th class="text-left">Tipo</th>
-            <th class="text-left">Conduta médica</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr
-            v-for="item in detailsExpandedItem"
-            :key="item.id"
-            class="custom-table-line"
-          >
-            <td>{{ item.created_at | formatData }}</td>
-            <td>{{ item.type | formatTypeAppointment }}</td>
-            <td>{{ item.details }}</td>
-          </tr>
-        </tbody>
-      </table>
+    <h3 v-if="detailsExpandedItem.length" class="title-expanded-item pt-4">
+      Dados de consulta
+    </h3>
+    <div v-if="detailsExpandedItem.length">
+      <v-data-table
+        :headers="headers"
+        :items="detailsExpandedItem"
+        class="mt-2 mb-4"
+        hide-default-footer
+      >
+        <template #item.created_at="{ item }">
+          <div style="font-variant-numeric: tabular-nums" class="text-no-wrap">
+            {{ item.created_at | formatData }}
+          </div>
+        </template>
+        <template #item.type="{ item }">
+          <div style="font-variant-numeric: tabular-nums" class="text-no-wrap">
+            {{ item.type | formatTypeAppointment }}
+          </div>
+        </template>
+      </v-data-table>
     </div>
-    <td v-else :colspan="headers.length" class="p-8">
+    <div v-else class="p-8">
       <div class="pt-2 text-center">
         <h3 class="title-expanded-item">
           Não há dados de consulta para esse prontuário.
         </h3>
       </div>
-    </td>
+    </div>
   </div>
 </template>
 
@@ -41,6 +40,16 @@ export default {
   },
   data: () => ({
     loading: false,
+    headers: [
+      {
+        text: "Data",
+        align: "start",
+        sortable: false,
+        value: "created_at",
+      },
+      { text: "Tipo", value: "type", sortable: false },
+      { text: "Conduta médica", value: "details", sortable: false },
+    ],
   }),
   mounted() {
     this.init();
@@ -53,18 +62,5 @@ export default {
 <style lang="scss">
 .title-expanded-item {
   color: #2e81d4;
-}
-.table-header {
-  font-size: 0.9rem;
-}
-.custom-mini-table {
-  width: 100%;
-  padding: 1rem;
-  border-collapse: collapse;
-}
-.custom-table-line {
-  margin-bottom: 1px;
-  border-bottom: 1pt solid #e0e0e0;
-  line-height: 3rem;
 }
 </style>
