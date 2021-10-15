@@ -3,12 +3,12 @@
     :loading="loading"
     :headers="headers"
     :items="items"
-    :disable-sort="loading"
     :items-per-page.sync="rowsPerPage"
     :page.sync="page"
-    class="v-sheet--outlined rounded-lg datatable"
-    return-object
-    lang="pt-br"
+    class="v-sheet--outlined rounded-lg font-titillium"
+    :show-expand="showExpandItem"
+    :expanded.sync="expanded"
+    single-expand
   >
     <template
       v-for="(_, scopedSlotName) in $scopedSlots"
@@ -16,16 +16,26 @@
     >
       <slot :name="scopedSlotName" v-bind="slotData" />
     </template>
+    <template v-slot:expanded-item="{ headers }">
+      <td :colspan="headers.length" class="p-8">
+        <SimpleTable :details-expanded-item="detailsExpandedItem" />
+      </td>
+    </template>
   </v-data-table>
 </template>
 
 <script>
+import API from "@/API";
+import SimpleTable from "@/components/SimpleTable";
+
 export default {
   name: "DataTable",
+  components: { SimpleTable },
   props: {
     urlApi: { type: Function, default: () => {} },
     headers: { type: Array, default: () => [] },
     filters: { type: Object, default: () => [] },
+    showExpandItem: { type: Boolean, default: false },
   },
   data: () => ({
     loading: false,
@@ -33,6 +43,8 @@ export default {
     rowsPerPage: 10,
     items: [],
     itemsPerPageOptions: [10, 20, 50],
+    expanded: [],
+    detailsExpandedItem: [],
   }),
   watch: {
     page() {
@@ -46,6 +58,18 @@ export default {
       handler() {
         this.filtrar();
       },
+    },
+    async expanded(value) {
+      try {
+        const itemExpanded = value[0];
+        const idAnimal = (itemExpanded || {}).id;
+        if (idAnimal) {
+          const details = await API.getAnimalAppointments({}, idAnimal);
+          this.detailsExpandedItem = details.data;
+        }
+      } catch (e) {
+        console.log("DEU RUIMM AQUI EM", e); //TO DO CRIAR COMPONENTE GLOBAL PARA TRATAMENTO DE ERROS
+      }
     },
   },
   mounted() {
@@ -70,6 +94,7 @@ export default {
         const data = await this.urlApi({
           limit,
           skip,
+          ...this.filters,
         });
         this.items = data.data;
       } catch (e) {

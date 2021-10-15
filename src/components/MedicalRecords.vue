@@ -24,7 +24,8 @@
         <v-spacer v-if="$vuetify.breakpoint.mdAndUp" />
         <v-col cols="12" md="3">
           <v-select
-            :items="[]"
+            v-model="filters.specie"
+            :items="species"
             label="Filtrar por espécie"
             outlined
             class="font-titillium"
@@ -33,7 +34,8 @@
         </v-col>
         <v-col cols="12" md="3">
           <v-select
-            :items="[]"
+            v-model="filters.tutor"
+            :items="tutors"
             label="Filtrar por tutor"
             outlined
             class="font-titillium"
@@ -46,6 +48,7 @@
         :url-api="urlApi"
         :filters="filters"
         :headers="headers"
+        show-expand-item
       >
         <template #item.birth="{ item }">
           <div style="font-variant-numeric: tabular-nums" class="text-no-wrap">
@@ -77,6 +80,26 @@ export default {
       { text: "Espécie", value: "animal_type", sortable: false },
       { text: "Nascimento", value: "birth", sortable: false },
       { text: "Tutor", value: "owner", sortable: false },
+    ],
+    species: [
+      { text: "Cachorro", value: "DOG" },
+      { text: "Cobra", value: "SNAKE" },
+      { text: "Gato", value: "CAT" },
+      { text: "Peixe", value: "FISH" },
+      { text: "Tigre", value: "TIGER" },
+      { text: "Outros", value: "OTHER" },
+    ],
+    tutors: [
+      { text: "Anderson", value: "Anderson" },
+      { text: "Angelo", value: "Angelo" },
+      { text: "Camila", value: "Camila" },
+      { text: "Fabiana", value: "Fabiana" },
+      { text: "Jaqueline", value: "Jaqueline" },
+      { text: "Jayro", value: "Jayro" },
+      { text: "Lara", value: "Lara" },
+      { text: "Lucas", value: "Lucas" },
+      { text: "Vanessa", value: "Vanessa" },
+      { text: "Vinicius", value: "Vinicius" },
     ],
     search: null,
     filters: {},

@@ -16,6 +16,19 @@ Vue.filter("formatAnimalType", (animalType) => {
   );
 });
 
+Vue.filter("formatTypeAppointment", (appointmentType) => {
+  const appointmentsType = [
+    { nameFormated: "Vacinação", key: "VACCINE" },
+    { nameFormated: "Emergência", key: "EMERGENCY" },
+    { nameFormated: "Rotina", key: "ROUTINE" },
+    { nameFormated: "Retorno", key: "RETURN" },
+  ];
+  const appointment = appointmentsType.find(
+    (appoint) => appointmentType === appoint.key
+  );
+  return (appointment || {}).nameFormated || "Desconhecida";
+});
+
 Vue.filter("formatData", (valor, format = "D") => {
   const data = new Date(valor);
   if (!valor) return null;

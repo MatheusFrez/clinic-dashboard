@@ -17,7 +17,7 @@
           Mês Do <br />
           Cachorro Louco
         </h1>
-        <div class="mt-2">
+        <div class="mt-2 mb-4">
           <span class="amarelo-customizado help-text">Ajude na prevenção!</span>
           <br />
           <br />
