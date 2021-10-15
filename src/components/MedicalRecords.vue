@@ -6,12 +6,95 @@
         <span class="grid-title ml-4">Prontuários</span>
       </span>
     </div>
+    <div>
+      <v-row class="mt-4">
+        <v-col cols="12" md="4">
+          <v-text-field
+            v-model="search"
+            outlined
+            class="font-titillium"
+            hide-details
+            clearable
+            append-icon="bi-search"
+            label="Pesquise por animal, tutor, espécie..."
+            :disabled="loading"
+            @click:clear="setFilter(null)"
+          />
+        </v-col>
+        <v-spacer v-if="$vuetify.breakpoint.mdAndUp" />
+        <v-col cols="12" md="3">
+          <v-select
+            :items="[]"
+            label="Filtrar por espécie"
+            outlined
+            class="font-titillium"
+            hide-details
+          ></v-select>
+        </v-col>
+        <v-col cols="12" md="3">
+          <v-select
+            :items="[]"
+            label="Filtrar por tutor"
+            outlined
+            class="font-titillium"
+            hide-details
+          ></v-select>
+        </v-col>
+      </v-row>
+      <DataTable
+        class="mt-4"
+        :url-api="urlApi"
+        :filters="filters"
+        :headers="headers"
+      >
+        <template #item.birth="{ item }">
+          <div style="font-variant-numeric: tabular-nums" class="text-no-wrap">
+            {{ item.birth | formatData }}
+          </div>
+        </template>
+        <template #item.animal_type="{ item }">
+          <div style="font-variant-numeric: tabular-nums" class="text-no-wrap">
+            {{ item.animal_type | formatAnimalType }}
+          </div>
+        </template>
+      </DataTable>
+    </div>
   </div>
 </template>
 
 <script>
+import API from "@/API";
+import DataTable from "@/components/DataTable";
+import { debounce } from "@/utils";
+
 export default {
   name: "MedicalRecords",
+  components: { DataTable },
+  data: () => ({
+    loading: false,
+    headers: [
+      { text: "Nome do animal", value: "name", sortable: false },
+      { text: "Espécie", value: "animal_type", sortable: false },
+      { text: "Nascimento", value: "birth", sortable: false },
+      { text: "Tutor", value: "owner", sortable: false },
+    ],
+    search: null,
+    filters: {},
+    urlApi: API.listAnimal,
+  }),
+  watch: {
+    search: debounce(function (val) {
+      this.setFilter(val);
+    }, 1000),
+  },
+  mounted() {
+    this.loading = false;
+  },
+  methods: {
+    setFilter(val) {
+      this.$set(this.filters, "filter", val);
+    },
+  },
   // TO DO REFARAR OS CSS REPETIDOS
 };
 </script>
