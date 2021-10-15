@@ -1,42 +1,91 @@
 <script>
 import { Pie } from "vue-chartjs";
+import API from "@/API";
 
 export default {
   extends: Pie,
-  data() {
-    return {
-      chartData: {
-        labels: ["Italy", "India", "Japan", "USA"],
-        datasets: [
-          {
-            borderWidth: 1,
-            borderColor: [
-              "rgba(255,99,132,1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-            ],
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-            ],
-            data: [1000, 500, 1500, 1000],
-          },
-        ],
-      },
-      options: {
-        legend: {
-          display: true,
+  data: () => ({
+    chartData: {
+      labels: [],
+      datasets: [
+        {
+          borderWidth: 1,
+          borderColor: [
+            "059BFF",
+            "#FF6384",
+            "#4BC0C0",
+            "#475660",
+            "#FBE58D",
+            "#0B2239",
+          ],
+          backgroundColor: [
+            "059BFF",
+            "#FF6384",
+            "#4BC0C0",
+            "#475660",
+            "#FBE58D",
+            "#0B2239",
+          ],
+          data: [],
         },
-        responsive: true,
-        maintainAspectRatio: false,
+      ],
+    },
+    options: {
+      legend: {
+        display: true,
       },
-    };
-  },
-  mounted() {
+      responsive: true,
+      maintainAspectRatio: false,
+    },
+  }),
+  async mounted() {
+    await this.init();
     this.renderChart(this.chartData, this.options);
+  },
+  methods: {
+    async init() {
+      try {
+        const preData = await API.getAppointments({ skip: 0, limit: 50 });
+        const data = preData.data;
+        await this.initializeChartData(data);
+      } catch (e) {
+        console.log("DEU RUIM NO GRÁFICO AQUI PAI", e); //TO DO COLOCAR MENSAGEM ERRO BONITA
+      }
+    },
+    prepareChartData(typesOfAnimals) {
+      let typesOfAnimalsReady = [];
+      typesOfAnimals.map((animal) => {
+        const indexTypeOfAnimal = typesOfAnimalsReady.findIndex(
+          (type) => type.key === animal.animal_type
+        );
+        if (indexTypeOfAnimal === -1) {
+          typesOfAnimalsReady.push({
+            key: animal.animal_type,
+            count: 1,
+          });
+        } else {
+          typesOfAnimalsReady[indexTypeOfAnimal].count += 1;
+        }
+      });
+
+      const labelsChart = typesOfAnimalsReady.map((animal) => animal.key);
+      const datasetsChart = typesOfAnimalsReady.map((animal) => animal.count);
+      this.chartData.labels = labelsChart;
+      this.chartData.datasets[0].data = datasetsChart;
+    },
+    async initializeChartData(data) {
+      try {
+        const typesOfAnimals = await Promise.all(
+          data.map(async (appointment) => {
+            const animal = await API.getAnimal({}, appointment.animal_id);
+            return animal.data;
+          })
+        );
+        this.prepareChartData(typesOfAnimals);
+      } catch (e) {
+        console.log("DEU RUIM NO PIE CHART", e);
+      }
+    },
   },
 };
 </script>

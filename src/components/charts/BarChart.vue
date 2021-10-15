@@ -1,160 +1,92 @@
 <script>
 import { Bar } from "vue-chartjs";
+import API from "@/API";
 
 export default {
   extends: Bar,
-  data() {
-    return {
-      chartData: {
-        labels: [
-          "2015-01",
-          "2015-02",
-          "2015-03",
-          "2015-04",
-          "2015-05",
-          "2015-06",
-          "2015-07",
-          "2015-08",
-          "2015-09",
-          "2015-10",
-          "2015-11",
-          "2015-12",
+  data: () => ({
+    chartData: {
+      labels: [],
+      datasets: [],
+    },
+    options: {
+      scales: {
+        yAxes: [
+          {
+            ticks: {
+              beginAtZero: true,
+            },
+            gridLines: {
+              display: true,
+            },
+          },
         ],
-        datasets: [
+        xAxes: [
           {
-            label: "Bar Chart",
-            borderWidth: 1,
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
-            ],
-            borderColor: [
-              "rgba(255,99,132,1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
-              "rgba(255,99,132,1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
-            ],
-            pointBorderColor: "#2554FF",
-            data: [12],
-          },
-          {
-            label: "Bar Chart2",
-            borderWidth: 1,
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
-            ],
-            borderColor: [
-              "rgba(255,99,132,1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
-              "rgba(255,99,132,1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
-            ],
-            pointBorderColor: "#2554FF",
-            data: [18],
-          },
-          {
-            label: "Bar Chart3",
-            borderWidth: 1,
-            backgroundColor: [
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
-              "rgba(255, 99, 132, 0.2)",
-              "rgba(54, 162, 235, 0.2)",
-              "rgba(255, 206, 86, 0.2)",
-              "rgba(75, 192, 192, 0.2)",
-              "rgba(153, 102, 255, 0.2)",
-              "rgba(255, 159, 64, 0.2)",
-            ],
-            borderColor: [
-              "rgba(255,99,132,1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
-              "rgba(255,99,132,1)",
-              "rgba(54, 162, 235, 1)",
-              "rgba(255, 206, 86, 1)",
-              "rgba(75, 192, 192, 1)",
-              "rgba(153, 102, 255, 1)",
-              "rgba(255, 159, 64, 1)",
-            ],
-            pointBorderColor: "#2554FF",
-            data: [50],
+            gridLines: {
+              display: false,
+            },
           },
         ],
       },
-      options: {
-        scales: {
-          yAxes: [
-            {
-              ticks: {
-                beginAtZero: true,
-              },
-              gridLines: {
-                display: true,
-              },
-            },
-          ],
-          xAxes: [
-            {
-              gridLines: {
-                display: false,
-              },
-            },
-          ],
-        },
-        legend: {
-          display: true,
-        },
-        responsive: true,
-        maintainAspectRatio: false,
+      legend: {
+        display: true,
       },
-    };
-  },
-  mounted() {
+      responsive: true,
+      maintainAspectRatio: false,
+    },
+  }),
+  async mounted() {
+    await this.init();
     this.renderChart(this.chartData, this.options);
+  },
+  methods: {
+    async init() {
+      try {
+        const preData = await API.getAppointments({ skip: 0, limit: 50 });
+        const data = preData.data;
+        this.initializeChartData(data);
+      } catch (e) {
+        console.log("DEU RUIM NO GRÁFICO AQUI PAI", e); //TO DO COLOCAR MENSAGEM ERRO BONITA
+      }
+    },
+    initializeChartData(data) {
+      //TO DO REFATORAR PRA FICAR COM OS DIAS DA SEMANA
+      data.map((appointment) => {
+        const datasetAppointmentIndex = this.chartData.datasets.findIndex(
+          (dataset) => dataset.label === appointment.type
+        );
+        if (datasetAppointmentIndex !== -1) {
+          const actualDataValue =
+            this.chartData.datasets[datasetAppointmentIndex].data[
+              datasetAppointmentIndex
+            ];
+
+          this.chartData.datasets[datasetAppointmentIndex].data[
+            datasetAppointmentIndex
+          ] = actualDataValue + 1;
+        } else {
+          const actualIndex = this.chartData.labels.length;
+          this.chartData.labels.push(appointment.type);
+          this.chartData.datasets.push({
+            label: appointment.type,
+            borderWidth: 1,
+            backgroundColor: this.getColorByIndex(actualIndex),
+            data: Array(this.chartData.labels.length),
+          });
+          const datasetAppointmentIndex = this.chartData.datasets.findIndex(
+            (dataset) => dataset.label === appointment.type
+          );
+          this.chartData.datasets[datasetAppointmentIndex].data[
+            datasetAppointmentIndex
+          ] = 1;
+        }
+      });
+    },
+    getColorByIndex(actualIndex) {
+      const colors = ["#FBE58D", "#4BC0C0", "#FF6384", "#059BFF"];
+      return colors[actualIndex];
+    },
   },
 };
 </script>
