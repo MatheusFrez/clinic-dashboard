@@ -1,0 +1,42 @@
+<template>
+  <div class="mx-16 my-8">
+    <span class="d-flex mb-4">
+      <img :src="require('../../assets/clipboard-data.svg')" height="25" />
+      <span class="grid-title ml-4">Dashboard</span>
+    </span>
+    <span class="grid-description">Estatísticas semanais</span>
+    <v-row class="mt-4">
+      <v-col cols="12" md="6">
+        <BarChartCard />
+      </v-col>
+      <v-col cols="12" md="6">
+        <PieChartCard />
+      </v-col>
+    </v-row>
+  </div>
+</template>
+
+<script>
+import PieChartCard from "@/components/cardsCharts/PieChartCard";
+import BarChartCard from "@/components/cardsCharts/BarChartCard";
+
+export default {
+  name: "Header",
+  components: {
+    PieChartCard,
+    BarChartCard,
+  },
+};
+</script>
+<style lang="scss" scoped>
+.grid-title {
+  font-family: "Titillium Web";
+  color: #2e81d4;
+  font-size: 1.5rem;
+  align-self: center;
+}
+.grid-description {
+  font-family: "Titillium Web";
+  font-size: 1.4rem;
+}
+</style>

@@ -38,7 +38,7 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .header {
   background: #2e81d4 0% 0% no-repeat padding-box;
   margin-top: 8vh;
