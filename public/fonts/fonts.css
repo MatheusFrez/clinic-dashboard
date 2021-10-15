@@ -1,0 +1,49 @@
+@font-face {
+  font-family: 'Naughty Monster';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('/fonts/NaughtyMonster.ttf');
+}
+@font-face {
+  font-family: 'TitilliumWeb';
+  font-style: normal;
+  font-weight: 200;
+  font-display: swap;
+  src: url('/fonts/TitilliumWeb-ExtraLight.ttf');
+}
+@font-face {
+  font-family: 'TitilliumWeb';
+  font-style: normal;
+  font-weight: 300;
+  font-display: swap;
+  src: url('/fonts/TitilliumWeb-Light.ttf');
+}
+@font-face {
+  font-family: 'TitilliumWeb';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/fonts/TitilliumWeb-Regular.ttf');
+}
+@font-face {
+  font-family: 'TitilliumWeb';
+  font-style: normal;
+  font-weight: 500;
+  font-display: swap;
+  src: url('/fonts/TitilliumWeb-Medium.ttf');
+}
+@font-face {
+  font-family: 'TitilliumWeb';
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src: url('/fonts/TitilliumWeb-Bold.ttf');
+}
+@font-face {
+  font-family: 'TitilliumWeb';
+  font-style: normal;
+  font-weight: 800;
+  font-display: swap;
+  src: url('/fonts/TitilliumWeb-ExtraBold.ttf');
+}

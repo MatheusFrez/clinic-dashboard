@@ -25,3 +25,6 @@ export default {
   // }, //TO DO REMOVER ESSE TESTE DE REQUISIÇÃO
 };
 </script>
+<style lang="scss">
+@import "./scss/main.scss";
+</style>
