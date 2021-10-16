@@ -4,19 +4,19 @@
       Tipos de animais mais atendidos
     </v-card-title>
     <v-card-text>
-      <PieChart />
+      <DoughnutChart />
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import PieChart from "@/components/charts/PieChart";
+import DoughnutChart from "@/components/charts/DoughnutChart";
 // TO DO CRIAR UM CARD GENÉRICO QUE TEM UM SLOT E UM TITLE DE PROPS
 
 export default {
-  name: "PieChartCard",
+  name: "DoughnutChartCard",
   components: {
-    PieChart,
+    DoughnutChart,
   },
 };
 </script>

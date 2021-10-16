@@ -10,20 +10,20 @@
         <BarChartCard />
       </v-col>
       <v-col cols="12" md="6">
-        <PieChartCard />
+        <DoughnutChartCard />
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
-import PieChartCard from "@/components/cardsCharts/PieChartCard";
+import DoughnutChartCard from "@/components/cardsCharts/DoughnutChartCard";
 import BarChartCard from "@/components/cardsCharts/BarChartCard";
 
 export default {
   name: "Header",
   components: {
-    PieChartCard,
+    DoughnutChartCard,
     BarChartCard,
   },
 };

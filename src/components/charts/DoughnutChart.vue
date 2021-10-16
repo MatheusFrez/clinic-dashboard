@@ -1,9 +1,10 @@
 <script>
-import { Pie } from "vue-chartjs";
+import { Doughnut } from "vue-chartjs";
 import API from "@/API";
+import { mapAnimalType } from "@/utils";
 
 export default {
-  extends: Pie,
+  extends: Doughnut,
   data: () => ({
     chartData: {
       labels: [],
@@ -68,7 +69,9 @@ export default {
         }
       });
 
-      const labelsChart = typesOfAnimalsReady.map((animal) => animal.key);
+      const labelsChart = typesOfAnimalsReady.map((animal) =>
+        mapAnimalType(animal.key)
+      );
       const datasetsChart = typesOfAnimalsReady.map((animal) => animal.count);
       this.chartData.labels = labelsChart;
       this.chartData.datasets[0].data = datasetsChart;
@@ -83,7 +86,7 @@ export default {
         );
         this.prepareChartData(typesOfAnimals);
       } catch (e) {
-        console.log("DEU RUIM NO PIE CHART", e);
+        console.log("DEU RUIM NO PIE CHART", e); //TO DO COLOCAR MENSAGEM ERRO BONITA
       }
     },
   },
