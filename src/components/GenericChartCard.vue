@@ -1,22 +1,19 @@
 <template>
   <v-card>
     <v-card-title class="justify-center title-card">
-      Tipos de atendimento
+      {{ title }}
     </v-card-title>
     <v-card-text>
-      <BarChart />
+      <slot />
     </v-card-text>
   </v-card>
 </template>
 
 <script>
-import BarChart from "@/components/charts/BarChart";
-// TO DO CRIAR UM CARD GENÉRICO QUE TEM UM SLOT E UM TITLE DE PROPS
-
 export default {
-  name: "BarChartCard",
-  components: {
-    BarChart,
+  name: "GenericChartCard",
+  props: {
+    title: { type: String, default: null },
   },
 };
 </script>

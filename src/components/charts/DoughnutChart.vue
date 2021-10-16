@@ -80,7 +80,7 @@ export default {
       try {
         const typesOfAnimals = await Promise.all(
           data.map(async (appointment) => {
-            const animal = await API.getAnimal({}, appointment.animal_id);
+            const animal = await API.getAnimal(appointment.animal_id);
             return animal.data;
           })
         );

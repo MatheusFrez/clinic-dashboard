@@ -7,24 +7,30 @@
     <span class="grid-description">Estatísticas semanais</span>
     <v-row class="mt-4">
       <v-col cols="12" md="6">
-        <BarChartCard />
+        <GenericChartCard title="Tipos de atendimento">
+          <BarChart />
+        </GenericChartCard>
       </v-col>
       <v-col cols="12" md="6">
-        <DoughnutChartCard />
+        <GenericChartCard title="Tipos de animais mais atendidos">
+          <DoughnutChart />
+        </GenericChartCard>
       </v-col>
     </v-row>
   </div>
 </template>
 
 <script>
-import DoughnutChartCard from "@/components/cardsCharts/DoughnutChartCard";
-import BarChartCard from "@/components/cardsCharts/BarChartCard";
+import DoughnutChart from "@/components/charts/DoughnutChart";
+import GenericChartCard from "@/components/GenericChartCard";
+import BarChart from "@/components/charts/BarChart";
 
 export default {
   name: "Header",
   components: {
-    DoughnutChartCard,
-    BarChartCard,
+    DoughnutChart,
+    BarChart,
+    GenericChartCard,
   },
 };
 </script>
