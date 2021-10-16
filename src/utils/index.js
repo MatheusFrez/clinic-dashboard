@@ -24,3 +24,18 @@ export function mapAnimalType(type) {
     (especieis.find((especie) => especie.value === type) || {}).text || "Outros"
   );
 }
+
+export function mapAppointmentType(type) {
+  switch (type) {
+    case "ROUTINE":
+      return "Rotina";
+    case "VACCINE":
+      return "Vacinação";
+    case "RETURN":
+      return "Retorno";
+    case "EMERGENCY":
+      return "Emergência";
+    default:
+      return "Desconhecido";
+  }
+}

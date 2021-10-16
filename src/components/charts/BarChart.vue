@@ -1,31 +1,29 @@
 <script>
 import { Bar } from "vue-chartjs";
 import API from "@/API";
+import { DateTime } from "luxon";
+import { mapAppointmentType } from "@/utils";
 
 export default {
   extends: Bar,
   data: () => ({
+    colors: ["#059BFF", "#FF6384", "#4BC0C0", "#FBE58D"],
     chartData: {
-      labels: [],
+      labels: ["Seg", "Ter", "Qua", "Qui", "Sex", "Sab", "Dom"],
       datasets: [],
     },
     options: {
       scales: {
         yAxes: [
           {
-            ticks: {
-              beginAtZero: true,
-            },
-            gridLines: {
-              display: true,
-            },
+            stacked: true,
           },
         ],
         xAxes: [
           {
-            gridLines: {
-              display: false,
-            },
+            stacked: true,
+            categoryPercentage: 0.5,
+            barPercentage: 1,
           },
         ],
       },
@@ -45,47 +43,44 @@ export default {
       try {
         const preData = await API.getAppointments({ skip: 0, limit: 50 });
         const data = preData.data;
-        this.initializeChartData(data);
+        await this.initializeChartData(data);
       } catch (e) {
         console.log("DEU RUIM NO GRÁFICO AQUI PAI", e); //TO DO COLOCAR MENSAGEM ERRO BONITA
       }
     },
-    initializeChartData(data) {
-      //TO DO REFATORAR PRA FICAR COM OS DIAS DA SEMANA
-      data.map((appointment) => {
-        const datasetAppointmentIndex = this.chartData.datasets.findIndex(
-          (dataset) => dataset.label === appointment.type
-        );
-        if (datasetAppointmentIndex !== -1) {
-          const actualDataValue =
-            this.chartData.datasets[datasetAppointmentIndex].data[
-              datasetAppointmentIndex
-            ];
-
-          this.chartData.datasets[datasetAppointmentIndex].data[
-            datasetAppointmentIndex
-          ] = actualDataValue + 1;
-        } else {
-          const actualIndex = this.chartData.labels.length;
-          this.chartData.labels.push(appointment.type);
-          this.chartData.datasets.push({
-            label: appointment.type,
-            borderWidth: 1,
-            backgroundColor: this.getColorByIndex(actualIndex),
-            data: Array(this.chartData.labels.length),
-          });
-          const datasetAppointmentIndex = this.chartData.datasets.findIndex(
-            (dataset) => dataset.label === appointment.type
-          );
-          this.chartData.datasets[datasetAppointmentIndex].data[
-            datasetAppointmentIndex
-          ] = 1;
-        }
+    addChartDataDataset(appointment) {
+      this.chartData.datasets.push({
+        type: "bar",
+        label: mapAppointmentType(appointment.type),
+        backgroundColor: this.colors[this.chartData.datasets.length],
+        data: Array(7).fill(0),
       });
     },
-    getColorByIndex(actualIndex) {
-      const colors = ["#FBE58D", "#4BC0C0", "#FF6384", "#059BFF"];
-      return colors[actualIndex];
+    initializeChartData(data) {
+      data.map((appointment) => {
+        const dataAppointment = new Date(appointment.created_at);
+        const dayOfWeekIndex = DateTime.fromJSDate(dataAppointment).weekday - 1;
+
+        const indexTypeOfAppointmentOnDatasets =
+          this.chartData.datasets.findIndex(
+            (appoint) => appoint.label === mapAppointmentType(appointment.type)
+          );
+
+        if (indexTypeOfAppointmentOnDatasets === -1) {
+          this.addChartDataDataset(appointment);
+          const lastDataseIndex = this.chartData.datasets.length - 1;
+          this.chartData.datasets[lastDataseIndex].data[dayOfWeekIndex] = 1;
+        } else {
+          const actualValueDayOfWeek =
+            this.chartData.datasets[indexTypeOfAppointmentOnDatasets].data[
+              dayOfWeekIndex
+            ];
+
+          this.chartData.datasets[indexTypeOfAppointmentOnDatasets].data[
+            dayOfWeekIndex
+          ] = actualValueDayOfWeek + 1;
+        }
+      });
     },
   },
 };
