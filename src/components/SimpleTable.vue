@@ -1,13 +1,13 @@
 <template>
   <div>
-    <h3 v-if="detailsExpandedItem.length" class="title-expanded-item pt-4">
+    <h3 v-if="detailsExpandedItem.length" class="title-expanded-item pt-4 pl-2">
       Dados de consulta
     </h3>
     <div v-if="detailsExpandedItem.length">
       <v-data-table
         :headers="headers"
         :items="detailsExpandedItem"
-        class="mt-2 mb-4"
+        class="mt-2 mb-4 datatable-without-shadow row-normal"
         hide-default-footer
       >
         <template #item.created_at="{ item }">
@@ -62,5 +62,11 @@ export default {
 <style lang="scss">
 .title-expanded-item {
   color: #2e81d4;
+}
+.datatable-without-shadow {
+  box-shadow: none !important;
+}
+.row-normal > .v-data-table__wrapper > table > tbody > tr:hover {
+  cursor: default;
 }
 </style>

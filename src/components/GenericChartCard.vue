@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card class="rounded-card">
     <v-card-title class="justify-center title-card">
       {{ title }}
     </v-card-title>
@@ -20,5 +20,8 @@ export default {
 <style lang="scss" scoped>
 .title-card {
   font-family: "Titillium Web";
+}
+.rounded-card {
+  border-radius: 0.8rem !important;
 }
 </style>

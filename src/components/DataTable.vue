@@ -5,10 +5,10 @@
     :items="items"
     :items-per-page.sync="rowsPerPage"
     :page.sync="page"
-    class="v-sheet--outlined rounded-lg font-titillium"
-    :show-expand="showExpandItem"
+    class="v-sheet--outlined rounded-lg font-titillium row-pointer"
     :expanded.sync="expanded"
     single-expand
+    @click:row="(item, slot) => showExpandItem && slot.expand(!slot.isExpanded)"
   >
     <template
       v-for="(_, scopedSlotName) in $scopedSlots"
@@ -17,7 +17,7 @@
       <slot :name="scopedSlotName" v-bind="slotData" />
     </template>
     <template v-slot:expanded-item="{ headers }">
-      <td :colspan="headers.length" class="p-8">
+      <td :colspan="headers.length" style="padding: 0px">
         <SimpleTable :details-expanded-item="detailsExpandedItem" />
       </td>
     </template>
@@ -110,5 +110,9 @@ export default {
 <style lang="scss">
 .datatable {
   font-family: "Titillium Web";
+}
+
+.row-pointer > .v-data-table__wrapper > table > tbody > tr:hover {
+  cursor: pointer;
 }
 </style>
