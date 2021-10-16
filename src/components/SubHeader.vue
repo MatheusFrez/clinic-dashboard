@@ -4,7 +4,7 @@
       <v-col cols="12" md="6">
         <v-img
           :src="require('../assets/imagem-dog.png')"
-          height="280"
+          height="330"
           contain
         />
       </v-col>
@@ -49,8 +49,8 @@ export default {
 .titulo-text {
   font-family: "Naughty Monster";
   text-transform: uppercase;
-  font-size: 4.5rem;
-  line-height: 1;
+  font-size: 5rem;
+  line-height: 1.2;
 }
 .help-text {
   font-family: "Titillium Web";

@@ -1,5 +1,5 @@
 <template>
-  <div class="mx-16 my-8">
+  <div class="mx-4 my-4 mx-md-16 my-md-8">
     <span class="d-flex mb-4">
       <img :src="require('../../assets/clipboard-data.svg')" height="25" />
       <span class="grid-title ml-4">Dashboard</span>
