@@ -1,6 +1,10 @@
 <template>
   <div>
-    <h3 v-if="detailsExpandedItem.length" class="title-expanded-item pt-4 pl-2">
+    <h3
+      v-if="detailsExpandedItem.length"
+      ref="title-expanded-item"
+      class="title-expanded-item pt-4 pl-2"
+    >
       Dados de consulta
     </h3>
     <div v-if="detailsExpandedItem.length">
@@ -51,12 +55,6 @@ export default {
       { text: "Conduta médica", value: "details", sortable: false },
     ],
   }),
-  mounted() {
-    this.init();
-  },
-  methods: {
-    init() {},
-  },
 };
 </script>
 <style lang="scss">

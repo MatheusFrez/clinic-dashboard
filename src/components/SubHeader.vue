@@ -13,11 +13,11 @@
         md="6"
         :class="$vuetify.breakpoint.mdAndUp ? 'mt-6' : 'text-center'"
       >
-        <h1 class="white--text titulo-text">
+        <h1 ref="title" class="white--text titulo-text">
           Mês Do <br />
           Cachorro Louco
         </h1>
-        <div class="mt-2 mb-4">
+        <div ref="description" class="mt-2 mb-4">
           <span class="amarelo-customizado help-text">Ajude na prevenção!</span>
           <br />
           <br />

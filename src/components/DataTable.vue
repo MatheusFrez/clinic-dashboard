@@ -17,7 +17,7 @@
       <slot :name="scopedSlotName" v-bind="slotData" />
     </template>
     <template v-slot:expanded-item="{ headers }">
-      <td :colspan="headers.length" style="padding: 0px">
+      <td :colspan="headers && headers.length" style="padding: 0px">
         <SimpleTable :details-expanded-item="detailsExpandedItem" />
       </td>
     </template>
@@ -91,14 +91,16 @@ export default {
       await this.$nextTick();
 
       try {
-        const limit = this.rowsPerPage;
-        const skip = (1 - this.page) * this.rowsPerPage;
-        const data = await this.urlApi({
-          limit,
-          skip,
-          ...this.filters,
-        });
-        this.items = data.data;
+        if (this.urlApi) {
+          const limit = this.rowsPerPage;
+          const skip = (1 - this.page) * this.rowsPerPage;
+          const data = await this.urlApi({
+            limit,
+            skip,
+            ...this.filters,
+          });
+          this.items = data.data;
+        }
       } catch (e) {
         console.log("DEU RUIM AQUI", e); //TO DO CRIAR UMA JANELA AMIGÁVEL PARA TRATAMENTO DE ERROS
       }

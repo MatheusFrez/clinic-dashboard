@@ -1,15 +1,19 @@
 import { createLocalVue, shallowMount } from "@vue/test-utils";
 
-import Header from "../../src/components/Header.vue";
+import SubHeader from "../../src/components/SubHeader.vue";
 
-describe("Testing header component.", () => {
+import Vuetify from "vuetify";
+const vuetify = new Vuetify();
+
+describe("Testing sub header component.", () => {
   const localVue = createLocalVue();
   let wrapper;
 
   beforeEach(() => {
-    wrapper = shallowMount(Header, {
+    wrapper = shallowMount(SubHeader, {
       localVue,
       propsData: {},
+      vuetify,
     });
   });
 
@@ -17,11 +21,15 @@ describe("Testing header component.", () => {
     expect(wrapper.isVueInstance()).toBe(true);
   });
 
-  it("Should has a v-app-bar component", () => {
-    expect(wrapper.findComponent({ name: "v-app-bar" }).exists()).toBe(true);
+  it("Should has a dog image on sub header", () => {
+    expect(wrapper.findComponent({ name: "v-img" }).exists()).toBe(true);
   });
 
-  it("Should has a logo image on header", () => {
-    expect(wrapper.findComponent({ name: "v-img" }).exists()).toBe(true);
+  it("Should has a title on sub header", () => {
+    expect(wrapper.findComponent({ ref: "title" }).exists()).toBe(true);
+  });
+
+  it("Should has a description on sub header", () => {
+    expect(wrapper.findComponent({ ref: "description" }).exists()).toBe(true);
   });
 });
