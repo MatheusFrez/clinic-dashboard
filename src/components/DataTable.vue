@@ -34,7 +34,7 @@ export default {
   props: {
     urlApi: { type: Function, default: () => {} },
     headers: { type: Array, default: () => [] },
-    filters: { type: Object, default: () => [] },
+    filters: { type: Object, default: () => {} },
     showExpandItem: { type: Boolean, default: false },
   },
   data: () => ({
@@ -99,7 +99,7 @@ export default {
             skip,
             ...this.filters,
           });
-          this.items = data.data;
+          this.items = data && data.data;
         }
       } catch (e) {
         console.log("DEU RUIM AQUI", e); //TO DO CRIAR UMA JANELA AMIGÁVEL PARA TRATAMENTO DE ERROS

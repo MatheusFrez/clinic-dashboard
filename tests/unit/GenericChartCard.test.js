@@ -1,4 +1,4 @@
-import { createLocalVue, mount, shallowMount } from "@vue/test-utils";
+import { createLocalVue, mount } from "@vue/test-utils";
 
 import GenericChartCard from "../../src/components/GenericChartCard.vue";
 
@@ -17,10 +17,6 @@ describe("Testing generic chart card.", () => {
     const title = wrapper.find(".v-card__title");
 
     expect(title.text()).toBe("Testing generic chart card");
-  });
-
-  it("Should renders a vue instance", () => {
-    expect(shallowMount(GenericChartCard).isVueInstance()).toBe(true);
   });
 
   it("Should has a v-card-text component", () => {

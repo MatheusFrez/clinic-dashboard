@@ -17,10 +17,6 @@ describe("Testing medical records component.", () => {
     });
   });
 
-  it("Should renders a vue instance", () => {
-    expect(wrapper.isVueInstance()).toBe(true);
-  });
-
   it("Should have a search filter", () => {
     const searchFilter = wrapper.findComponent({ ref: "search-filter" });
 

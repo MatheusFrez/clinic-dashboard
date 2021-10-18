@@ -13,10 +13,6 @@ describe("Testing header component.", () => {
     });
   });
 
-  it("Should renders a vue instance", () => {
-    expect(wrapper.isVueInstance()).toBe(true);
-  });
-
   it("Should has a v-app-bar component", () => {
     expect(wrapper.findComponent({ name: "v-app-bar" }).exists()).toBe(true);
   });

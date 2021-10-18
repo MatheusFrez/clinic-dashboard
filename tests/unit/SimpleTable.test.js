@@ -13,16 +13,9 @@ describe("Testing simple table component.", () => {
     });
   });
 
-  it("Should renders a vue instance", () => {
-    expect(wrapper.isVueInstance()).toBe(true);
-  });
-
   it("Should be a div element", () => {
-    expect(wrapper.is("div")).toBe(true);
-  });
-
-  it("Should be a not empty element", () => {
-    expect(wrapper.isEmpty()).toBe(false);
+    const div = wrapper.findAll("div").at(0);
+    expect(div.is("div")).toBe(true);
   });
 
   it("Should be a visible element", () => {

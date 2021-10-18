@@ -78,13 +78,19 @@ export default {
     },
     async initializeChartData(data) {
       try {
-        const typesOfAnimals = await Promise.all(
+        const typesOfAnimals = await Promise.allSettled(
           data.map(async (appointment) => {
             const animal = await API.getAnimal(appointment.animal_id);
             return animal.data;
           })
         );
-        this.prepareChartData(typesOfAnimals);
+        const resolvedPromises = typesOfAnimals.filter(
+          (promise) => promise.status !== "rejected"
+        );
+        const typesOfAnimalReady = resolvedPromises.map(
+          (promise) => promise.value
+        );
+        this.prepareChartData(typesOfAnimalReady);
       } catch (e) {
         console.log("DEU RUIM NO PIE CHART", e); //TO DO COLOCAR MENSAGEM ERRO BONITA
       }

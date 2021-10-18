@@ -17,10 +17,6 @@ describe("Testing sub header component.", () => {
     });
   });
 
-  it("Should renders a vue instance", () => {
-    expect(wrapper.isVueInstance()).toBe(true);
-  });
-
   it("Should has a dog image on sub header", () => {
     expect(wrapper.findComponent({ name: "v-img" }).exists()).toBe(true);
   });

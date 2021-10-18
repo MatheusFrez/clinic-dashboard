@@ -10,12 +10,8 @@ describe("Testing data table component.", () => {
   beforeEach(() => {
     wrapper = shallowMount(DataTable, {
       localVue,
-      propsData: {},
+      propsData: { filters: {} },
     });
-  });
-
-  it("Should renders a vue instance", () => {
-    expect(wrapper.isVueInstance()).toBe(true);
   });
 
   it("Should has a v-data-table component", () => {
