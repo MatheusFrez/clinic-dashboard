@@ -10,6 +10,7 @@
       <v-row class="mt-4">
         <v-col cols="12" md="4">
           <v-text-field
+            ref="search-filter"
             v-model="search"
             outlined
             class="font-titillium"
@@ -24,6 +25,7 @@
         <v-spacer v-if="$vuetify.breakpoint.mdAndUp" />
         <v-col cols="12" md="3">
           <v-select
+            ref="specie-filter"
             v-model="filters.specie"
             :items="species"
             label="Filtrar por espécie"
@@ -34,6 +36,7 @@
         </v-col>
         <v-col cols="12" md="3">
           <v-select
+            ref="tutor-filter"
             v-model="filters.tutor"
             :items="tutors"
             label="Filtrar por tutor"
