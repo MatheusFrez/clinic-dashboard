@@ -3,7 +3,7 @@
     <h3
       v-if="detailsExpandedItem.length"
       ref="title-expanded-item"
-      class="title-expanded-item pt-4 pl-2"
+      class="title-expanded-item pt-4 pl-4"
     >
       Dados de consulta
     </h3>
@@ -47,12 +47,25 @@ export default {
     headers: [
       {
         text: "Data",
-        align: "start",
+        align: "right",
         sortable: false,
         value: "created_at",
+        class: "bold",
       },
-      { text: "Tipo", value: "type", sortable: false },
-      { text: "Conduta médica", value: "details", sortable: false },
+      {
+        text: "Tipo",
+        align: "center",
+        value: "type",
+        sortable: false,
+        class: "bold",
+      },
+      {
+        text: "Conduta médica",
+        align: "left",
+        value: "details",
+        sortable: false,
+        class: "bold",
+      },
     ],
   }),
 };

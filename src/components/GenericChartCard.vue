@@ -19,7 +19,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .title-card {
-  font-family: "Titillium Web";
+  font: normal normal 600 "Titillium Web";
 }
 .rounded-card {
   border-radius: 0.8rem !important;

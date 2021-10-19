@@ -117,4 +117,7 @@ export default {
 .row-pointer > .v-data-table__wrapper > table > tbody > tr:hover {
   cursor: pointer;
 }
+.v-data-table__expanded__row {
+  background-color: #2e81d426 !important;
+}
 </style>

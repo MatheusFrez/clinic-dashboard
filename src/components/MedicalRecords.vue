@@ -79,10 +79,30 @@ export default {
   data: () => ({
     loading: false,
     headers: [
-      { text: "Nome do animal", value: "name", sortable: false },
-      { text: "Espécie", value: "animal_type", sortable: false },
-      { text: "Nascimento", value: "birth", sortable: false },
-      { text: "Tutor", value: "owner", sortable: false },
+      {
+        text: "Nome do animal",
+        value: "name",
+        sortable: false,
+        class: "bold",
+      },
+      {
+        text: "Espécie",
+        value: "animal_type",
+        sortable: false,
+        class: "bold",
+      },
+      {
+        text: "Nascimento",
+        value: "birth",
+        sortable: false,
+        class: "bold",
+      },
+      {
+        text: "Tutor",
+        value: "owner",
+        sortable: false,
+        class: "bold",
+      },
     ],
     species: [
       { text: "Cachorro", value: "DOG" },
