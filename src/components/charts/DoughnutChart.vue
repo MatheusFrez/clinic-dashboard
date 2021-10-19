@@ -50,7 +50,7 @@ export default {
         const data = preData.data;
         await this.initializeChartData(data);
       } catch (e) {
-        console.log("DEU RUIM NO GRÁFICO AQUI PAI", e); //TO DO COLOCAR MENSAGEM ERRO BONITA
+        this.$AlertDialog.open();
       }
     },
     prepareChartData(typesOfAnimals) {
@@ -92,7 +92,7 @@ export default {
         );
         this.prepareChartData(typesOfAnimalReady);
       } catch (e) {
-        console.log("DEU RUIM NO PIE CHART", e); //TO DO COLOCAR MENSAGEM ERRO BONITA
+        this.$AlertDialog.open();
       }
     },
   },

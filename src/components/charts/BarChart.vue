@@ -45,7 +45,7 @@ export default {
         const data = preData.data;
         await this.initializeChartData(data);
       } catch (e) {
-        console.log("DEU RUIM NO GRÁFICO AQUI PAI", e); //TO DO COLOCAR MENSAGEM ERRO BONITA
+        this.$AlertDialog.open();
       }
     },
     addChartDataDataset(appointment) {

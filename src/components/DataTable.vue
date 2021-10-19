@@ -69,7 +69,7 @@ export default {
           this.detailsExpandedItem = details.data;
         }
       } catch (e) {
-        console.log("DEU RUIMM AQUI EM", e); //TO DO CRIAR COMPONENTE GLOBAL PARA TRATAMENTO DE ERROS
+        this.$AlertDialog.open();
       }
       this.loading = false;
     },
@@ -102,7 +102,7 @@ export default {
           this.items = data && data.data;
         }
       } catch (e) {
-        console.log("DEU RUIM AQUI", e); //TO DO CRIAR UMA JANELA AMIGÁVEL PARA TRATAMENTO DE ERROS
+        this.$AlertDialog.open();
       }
       this.loading = false;
     },

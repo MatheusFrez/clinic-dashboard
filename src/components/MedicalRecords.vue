@@ -121,7 +121,6 @@ export default {
       this.$set(this.filters, "filter", val);
     },
   },
-  // TO DO REFARAR OS CSS REPETIDOS
 };
 </script>
 <style lang="scss" scoped>
