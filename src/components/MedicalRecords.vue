@@ -2,7 +2,7 @@
   <div class="mx-4 my-8 mx-md-16 my-md-16">
     <div>
       <span d-flex mb-4>
-        <img :src="require('../assets/clipboard-data.svg')" height="25" />
+        <img :src="require('../assets/journal-text.svg')" height="30" />
         <span class="grid-title ml-4">Prontuários</span>
       </span>
     </div>
@@ -125,7 +125,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 .grid-title {
-  font-family: "Titillium Web";
+  font: normal normal normal "Titillium Web";
   color: #2e81d4;
   font-size: 1.5rem;
   align-self: center;

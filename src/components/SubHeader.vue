@@ -51,13 +51,14 @@ export default {
   text-transform: uppercase;
   font-size: 5rem;
   line-height: 1.2;
+  letter-spacing: 0.2rem;
 }
 .help-text {
-  font-family: "Titillium Web";
+  font: normal normal 600 "Titillium Web";
   font-size: 1.5rem;
 }
 .end-info-text {
-  font-family: "Titillium Web";
+  font: normal normal normal "Titillium Web";
   font-size: 1.2rem;
 }
 </style>

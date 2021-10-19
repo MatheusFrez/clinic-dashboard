@@ -4,7 +4,7 @@
       <img
         ref="clipboard-data"
         :src="require('../../assets/clipboard-data.svg')"
-        height="25"
+        height="30"
       />
       <span ref="grid-title" class="grid-title ml-4">Dashboard</span>
     </span>
@@ -42,13 +42,14 @@ export default {
 </script>
 <style lang="scss" scoped>
 .grid-title {
-  font-family: "Titillium Web";
+  font: normal normal normal "Titillium Web";
   color: #2e81d4;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   align-self: center;
 }
 .grid-description {
-  font-family: "Titillium Web";
+  font: normal normal 600 "Titillium Web";
   font-size: 1.4rem;
+  font-weight: 500;
 }
 </style>

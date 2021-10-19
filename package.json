@@ -46,7 +46,7 @@
   "lint-staged": {
     "*.{js,jsx,vue}": [
       "vue-cli-service lint",
-      "jest -i",
+      "jest -i --passWithNoTests",
       "git add"
     ]
   }
