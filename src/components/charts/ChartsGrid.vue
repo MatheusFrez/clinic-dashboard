@@ -1,10 +1,16 @@
 <template>
   <div class="mx-4 my-4 mx-md-16 my-md-8">
     <span class="d-flex mb-4">
-      <img :src="require('../../assets/clipboard-data.svg')" height="25" />
-      <span class="grid-title ml-4">Dashboard</span>
+      <img
+        ref="clipboard-data"
+        :src="require('../../assets/clipboard-data.svg')"
+        height="25"
+      />
+      <span ref="grid-title" class="grid-title ml-4">Dashboard</span>
     </span>
-    <span class="grid-description">Estatísticas semanais</span>
+    <span ref="grid-description" class="grid-description">
+      Estatísticas semanais
+    </span>
     <v-row class="mt-4">
       <v-col cols="12" md="6">
         <GenericChartCard title="Tipos de atendimento">
