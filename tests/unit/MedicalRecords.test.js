@@ -23,16 +23,37 @@ describe("Testing medical records component.", () => {
     expect(searchFilter.exists()).toBe(true);
   });
 
+  test("Set search filter value", async () => {
+    const textInput = wrapper.findComponent({ ref: "search-filter" });
+    textInput.element.value = "some value filter";
+
+    expect(textInput.element.value).toBe("some value filter");
+  });
+
   it("Should have a specie filter", () => {
     const especieFilter = wrapper.findComponent({ ref: "specie-filter" });
 
     expect(especieFilter.exists()).toBe(true);
   });
 
+  test("Set especie filter value", async () => {
+    const especieFilter = wrapper.findComponent({ ref: "specie-filter" });
+    especieFilter.element.value = "some value filter";
+
+    expect(especieFilter.element.value).toBe("some value filter");
+  });
+
   it("Should have a tutor filter", () => {
     const tutorFilter = wrapper.findComponent({ ref: "tutor-filter" });
 
     expect(tutorFilter.exists()).toBe(true);
+  });
+
+  test("Set especie tutor value", async () => {
+    const tutorFilter = wrapper.findComponent({ ref: "tutor-filter" });
+    tutorFilter.element.value = "some value especie";
+
+    expect(tutorFilter.element.value).toBe("some value especie");
   });
 
   it("Should have a datatable component", () => {

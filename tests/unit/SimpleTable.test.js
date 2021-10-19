@@ -13,11 +13,6 @@ describe("Testing simple table component.", () => {
     });
   });
 
-  it("Should be a div element", () => {
-    const div = wrapper.findAll("div").at(0);
-    expect(div.is("div")).toBe(true);
-  });
-
   it("Should be a visible element", () => {
     expect(wrapper.isVisible()).toBe(true);
   });
