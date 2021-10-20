@@ -1,11 +1,9 @@
 <template>
   <div class="mx-4 my-8 mx-md-16 my-md-16">
-    <div>
-      <span d-flex mb-4>
-        <img :src="require('../assets/journal-text.svg')" height="30" />
-        <span class="grid-title ml-4">Prontuários</span>
-      </span>
-    </div>
+    <span class="d-flex mb-4">
+      <img :src="require('../assets/journal-text.svg')" height="30" />
+      <span class="grid-title ml-4">Prontuários</span>
+    </span>
     <div>
       <v-row class="mt-4">
         <v-col cols="12" md="4">
@@ -147,7 +145,7 @@ export default {
 .grid-title {
   font: normal normal normal "Titillium Web";
   color: #2e81d4;
-  font-size: 1.5rem;
+  font-size: 1.7rem;
   align-self: center;
 }
 </style>

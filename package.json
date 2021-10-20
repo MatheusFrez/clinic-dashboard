@@ -7,7 +7,10 @@
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "test": "jest -i",
-    "test-watch": "jest -i --watch"
+    "test-watch": "jest -i --watch",
+    "docker-build": "docker build -t vuejs-cookbook/desafio-matheus-frez .",
+    "docker-run": "docker run -it -p 8080:8080 --rm --name desafio-matheus-frez-1 vuejs-cookbook/desafio-matheus-frez",
+    "docker": "yarn run docker-build && yarn run docker-run"
   },
   "dependencies": {
     "axios": "^0.23.0",
